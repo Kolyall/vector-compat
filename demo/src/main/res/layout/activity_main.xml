@@ -45,16 +45,16 @@
         app:vc_startDrawable="@drawable/ic_stop_to_play"
         app:vc_endDrawable="@drawable/ic_play_to_stop"/>
 
-    <com.wnafee.vector.MorphButton
-        android:id="@+id/checkBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="0dp"
-        android:background="?android:selectableItemBackground"
-        android:scaleType="center"
-        app:vc_backgroundTint="#6A1B9A"
-        app:vc_startDrawable="@drawable/abc_btn_check_to_on_mtrl_000"
-        app:vc_endDrawable="@drawable/abc_btn_check_to_on_mtrl_015"/>
+    <!--<com.wnafee.vector.MorphButton-->
+        <!--android:id="@+id/checkBtn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_margin="0dp"-->
+        <!--android:background="?android:selectableItemBackground"-->
+        <!--android:scaleType="center"-->
+        <!--app:vc_backgroundTint="#6A1B9A"-->
+        <!--app:vc_startDrawable="@drawable/abc_btn_check_to_on_mtrl_000"-->
+        <!--app:vc_endDrawable="@drawable/abc_btn_check_to_on_mtrl_015"/>-->
 
 </LinearLayout>

@@ -14,11 +14,6 @@ package com.wnafee.vector.compat;
  * the License.
  */
 
-import com.wnafee.vector.R;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
@@ -39,6 +34,11 @@ import android.support.v4.util.ArrayMap;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
+
+import com.wnafee.vector.R;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -152,8 +152,9 @@ public class AnimatedVectorDrawable extends DrawableCompat implements Animatable
         return super.setVisible(visible, restart);
     }
 
-    public void setLayoutDirection(int layoutDirection) {
-        mAnimatedVectorState.mVectorDrawable.setLayoutDirection(layoutDirection);
+    @Override
+    public boolean setSupportLayoutDirection(int layoutDirection) {
+        return mAnimatedVectorState.mVectorDrawable.setSupportLayoutDirection(layoutDirection);
     }
 
     @Override

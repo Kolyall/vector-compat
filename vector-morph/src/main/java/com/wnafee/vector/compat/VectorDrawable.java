@@ -14,11 +14,6 @@ package com.wnafee.vector.compat;
  * the License.
  */
 
-import com.wnafee.vector.R;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -43,6 +38,11 @@ import android.support.v4.util.ArrayMap;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Xml;
+
+import com.wnafee.vector.R;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -265,7 +265,7 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
      * This is used to calculate the path animation accuracy.
      */
     public float getPixelSize() {
-        if (mVectorState == null && mVectorState.mVPathRenderer == null ||
+        if (mVectorState == null || mVectorState.mVPathRenderer == null ||
                 mVectorState.mVPathRenderer.mBaseWidth == 0 ||
                 mVectorState.mVPathRenderer.mBaseHeight == 0 ||
                 mVectorState.mVPathRenderer.mViewportHeight == 0 ||
@@ -503,7 +503,7 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
     }
 
     private boolean needMirroring() {
-        return isAutoMirrored() && getLayoutDirection() == 1; // 1 is for LayoutDirection.RTL
+        return isAutoMirrored() && getSupportLayoutDirection() == 1; // 1 is for LayoutDirection.RTL
     }
 
     @Override

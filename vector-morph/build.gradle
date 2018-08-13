@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply from: 'bintray.gradle'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion '27.0.3'
 
     def propertiesFile = file('properties/version/version.properties')
@@ -19,9 +19,11 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode appVersionCode
         versionName appVersionName
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     lintOptions {
@@ -44,10 +46,10 @@ configurations {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:22.1.1'
+    implementation 'com.android.support:appcompat-v7:23.2.0'
     //added because of gradlew install is fall with error: cannot find symbol  annotations
-    javadocDeps 'com.android.support:support-annotations:22.1.1'
-    javadocDeps 'com.android.support:appcompat-v7:22.1.1'
+    javadocDeps 'com.android.support:support-annotations:23.2.0'
+    javadocDeps 'com.android.support:appcompat-v7:23.2.0'
 }
 
 
