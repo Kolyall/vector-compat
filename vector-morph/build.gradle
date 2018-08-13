@@ -1,0 +1,83 @@
+apply plugin: 'com.android.library'
+apply from: 'bintray.gradle'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '27.0.3'
+
+    def propertiesFile = file('properties/version/version.properties')
+    def appVersionCode = 1;
+    def appVersionName = "1.0";
+    if (propertiesFile.canRead()) {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream(propertiesFile))
+        appVersionCode = Integer.parseInt(properties['VERSION_CODE']).intValue();
+        appVersionName = String.valueOf(properties['VERSION_NAME']);
+    } else {
+        throw new Exception("Could not read properties/version/version.properties!")
+    }
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode appVersionCode
+        versionName appVersionName
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+////added because of gradlew install is fall with error: cannot find symbol  annotations
+configurations {
+    javadocDeps
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:22.1.1'
+    //added because of gradlew install is fall with error: cannot find symbol  annotations
+    javadocDeps 'com.android.support:support-annotations:22.1.1'
+    javadocDeps 'com.android.support:appcompat-v7:22.1.1'
+}
+
+
+////added because of gradlew install is fall with error: cannot find symbol  annotations
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+    options.addStringOption('Xwerror', '-quiet')
+}
+
+////added because of gradlew install is fall with error: cannot find symbol  annotations
+tasks.whenTaskAdded { task ->
+    if (task.name == 'javadoc') {
+        task.configure {
+            classpath += configurations.javadocDeps
+            source = android.sourceSets.main.java.srcDirs
+            classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+            classpath += files("build/generated/source/r/release")
+            classpath += files("build/generated/source/buildConfig/release")
+        }
+    }
+}
+
+afterEvaluate {
+    javadoc.classpath += files(android.libraryVariants.collect { variant ->
+        variant.javaCompile.classpath.files
+    })
+}
+
+// Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
