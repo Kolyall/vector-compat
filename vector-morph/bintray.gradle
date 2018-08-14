@@ -15,6 +15,7 @@ ext {
 
     publishedGroupId = 'com.github.kolyall'//only this
     artifact = 'vector-morph'//should be the same as module name
+    artifactLocal = 'vector-morph'//should be the same as module name
     libraryVersion = appVersionName
 
     libraryName = 'vector-morph'
